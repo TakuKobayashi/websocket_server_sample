@@ -25,12 +25,12 @@
       var socket = io();
       $('form').submit(function(){
         //サーバーに指定したイベント名にリクエストを送る
-        socket.emit('message', $('#m').val());
+        socket.emit('grab', $('#m').val());
         $('#m').val('');
         return false;
       });
       //サーバーからの指定のイベントを受け取れるようにcallbackを登録する
-      socket.on('message', function(msg){
+      socket.on('grab', function(msg){
         console.log(msg);
         $('#messages').append($('<li>').text(msg));
       });
