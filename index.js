@@ -50,7 +50,8 @@ io.on('connection', function(socket){
     //socket.broadcast.emit('message', 'hello');
     //受け取った人含めて全員に送る場合
     //位第一引数のイベント名に対して送る
-    socket.broadcast.emit('message', msg);
+    //socket.broadcast.emit('message', msg);
+    io.emit('message', msg);
     console.log('message: ' + msg);
   });
 
