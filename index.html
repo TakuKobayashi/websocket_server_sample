@@ -21,19 +21,29 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
     <script>
-      //socketioを使いserverにconnectする
-      var socket = io.connect("ws://" + location.host);
+      var host = window.document.location.host;
+      var ws = new WebSocket('ws://' + host);
+      //socketioを使いserverにconnectする(socketioの場合)
+      //var socket = io.connect("ws://" + location.host);
       $('form').submit(function(){
-        //サーバーに指定したイベント名にリクエストを送る
-        socket.emit('message', $('#m').val());
+        //サーバーに指定したイベント名にリクエストを送る(socketioの場合)
+        //socket.emit('message', $('#m').val());
+        ws.send($('#m').val());
         $('#m').val('');
         return false;
       });
-      //サーバーからの指定のイベントを受け取れるようにcallbackを登録する
+
+      ws.onmessage = function (event) {
+         console.log(event);
+         $('#messages').append($('<li>').text(event.data));
+      };
+      //サーバーからの指定のイベントを受け取れるようにcallbackを登録する(socket.ioの場合)
+      /*
       socket.on('message', function(msg){
         console.log(msg);
         $('#messages').append($('<li>').text(msg));
       });
+*/
     </script>
   </body>
 </html>

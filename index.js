@@ -13,7 +13,6 @@ var server = http.createServer(app).listen(port, function () {
 
 var io = require('socket.io').listen(server);
 
-/*
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({server:server});
 
@@ -34,7 +33,6 @@ wss.on('connection', function (ws) {
     });
   });
 });
-*/
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
