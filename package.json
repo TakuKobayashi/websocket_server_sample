@@ -9,7 +9,6 @@
   "dependencies": {
     "express": "*",
     "socket.io": "*",
-    "websocket.io": "*",
-    "mysql": "*"
+    "websocket.io": "*"
   }
 }
