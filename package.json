@@ -13,7 +13,9 @@
     "express": "*",
     "socket.io": "*",
     "websocket.io": "*",
-    "ejs": "*"
+    "ejs": "*",
+    "jquery":"*",
+    "nodemon":"*"
   },
   "repository": {
     "type": "git",
