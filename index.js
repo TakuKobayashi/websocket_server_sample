@@ -1,10 +1,12 @@
 var express = require('express');
 var app = express();
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 var port = process.env.PORT || 3000;
 
 //サーバーの立ち上げ
 var http = require('http');
+var multer = require('multer');
 
 //指定したポートにきたリクエストを受け取れるようにする
 var server = http.createServer(app).listen(port, function () {
@@ -15,6 +17,8 @@ var io = require('socket.io').listen(server);
 
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({server:server});
+
+var multer = require('multer');
 
 var connections = []; 
 wss.on('connection', function (ws) {
@@ -39,6 +43,15 @@ app.get('/jquery/jquery.js', function(req, res) {
 });
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+var upload = multer({ dest: 'uploads/' });  // upload_dataディレクトリにファイルを保存
+app.post('/upload', upload.single('testfile'), function (req, res) {
+  console.log("upload:" + req.file.path);
+  connections.forEach(function (con, i) {
+    con.send(req.file.path);
+  });
+  res.send("");
 });
 
 //サーバーと接続されると呼ばれる
