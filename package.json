@@ -8,14 +8,14 @@
   },
   "author": "TakuKobayashi",
   "private": true,
-  "license": "",
+  "license": "MIT",
   "dependencies": {
-    "express": "*",
-    "socket.io": "*",
-    "ws": "*",
     "ejs": "*",
-    "jquery":"*",
-    "nodemon":"*"
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "nodemon": "^1.15.0",
+    "socket.io": "^2.0.4",
+    "ws": "^4.0.0"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,5 @@
     "websocket",
     "express",
     "socket.io"
-  ],
-  "license": "MIT"
+  ]
 }
