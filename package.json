@@ -15,8 +15,7 @@
     "ws": "*",
     "ejs": "*",
     "jquery":"*",
-    "nodemon":"*",
-    "multer": "*"
+    "nodemon":"*"
   },
   "repository": {
     "type": "git",
