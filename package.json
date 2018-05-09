@@ -10,12 +10,13 @@
   "private": false,
   "license": "MIT",
   "dependencies": {
+    "npm": "*",
     "ejs": "*",
     "express": "*",
     "jquery": "*",
-    "nodemon": "^1.15.1",
+    "nodemon": "*",
     "socket.io": "*",
-    "ws": "^4.1.0"
+    "ws": "*"
   },
   "repository": {
     "type": "git",
