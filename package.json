@@ -15,7 +15,6 @@
     "jquery": "*",
     "nodemon": "*",
     "npm": "*",
-    "socket.io": "*",
     "ws": "*"
   },
   "repository": {
@@ -25,7 +24,6 @@
   "keywords": [
     "node",
     "websocket",
-    "express",
-    "socket.io"
+    "express"
   ]
 }

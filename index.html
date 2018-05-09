@@ -38,7 +38,6 @@
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
-    <script src="/socket.io/socket.io.js"></script>
     <script src="/jquery/jquery.js"></script>
     <script>
       var url = window.location.href
@@ -49,11 +48,7 @@
       }else{
         ws = new WebSocket('ws://' + host);
       }
-      //socketioを使いserverにconnectする(socketioの場合)
-      //var socket = io.connect("ws://" + location.host);
       $('form').submit(function(){
-        //サーバーに指定したイベント名にリクエストを送る(socketioの場合)
-        //socket.emit('message', $('#m').val());
         ws.send($('#m').val());
         $('#m').val('');
         return false;
@@ -63,13 +58,6 @@
          console.log(event);
          $('#messages').append($('<li>').text(event.data));
       };
-      //サーバーからの指定のイベントを受け取れるようにcallbackを登録する(socket.ioの場合)
-      /*
-      socket.on('message', function(msg){
-        console.log(msg);
-        $('#messages').append($('<li>').text(msg));
-      });
-*/
     </script>
   </body>
 </html>
