@@ -10,11 +10,11 @@
   "private": false,
   "license": "MIT",
   "dependencies": {
-    "npm": "*",
     "ejs": "*",
     "express": "*",
     "jquery": "*",
     "nodemon": "*",
+    "npm": "*",
     "socket.io": "*",
     "ws": "*"
   },
