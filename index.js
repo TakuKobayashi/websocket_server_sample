@@ -1,22 +1,26 @@
 var express = require('express');
 var app = express();
 
+//use path static resource files
+app.use(express.static('public'));
+
 var port = process.env.PORT || 3000;
 
-//サーバーの立ち上げ
+//wake up http server
 var http = require('http');
 
-//指定したポートにきたリクエストを受け取れるようにする
+//Enable to receive requests access to the specified port
 var server = http.createServer(app).listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
+//use socket.io server
 var io = require('socket.io').listen(server);
 
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({server:server});
 
-var connections = []; 
+var connections = [];
 wss.on('connection', function (ws) {
   console.log('connect!!');
   connections.push(ws);
