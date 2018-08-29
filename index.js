@@ -1,3 +1,4 @@
+var url = require('url');
 var express = require('express');
 var app = express();
 
@@ -13,6 +14,24 @@ var http = require('http');
 var server = http.createServer(app).listen(port, function () {
   console.log('Server listening at port %d', port);
 });
+
+server.on('upgrade', function upgrade(request, socket, head) {
+  var pathname = url.parse(request.url).pathname;
+  console.log(pathname);
+
+  if (pathname === '/foo') {
+    wss1.handleUpgrade(request, socket, head, function done(ws) {
+      wss1.emit('connection', ws, request);
+    });
+  } else if (pathname === '/bar') {
+    wss2.handleUpgrade(request, socket, head, function done(ws) {
+      wss2.emit('connection', ws, request);
+    });
+  } else {
+    socket.destroy();
+  }
+});
+
 
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({server:server});
