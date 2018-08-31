@@ -4,7 +4,12 @@ var express = require('express');
 var app = express();
 app.use(express.static('public'));
 
-var port = process.env.PORT || 3100;
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+var routings = require(__dirname + "/config/routes.js");
+
+var port = process.env.PORT || 3000;
 //var VideoEditor = require(__dirname + '/video_editor.js');
 
 //wake up http server
@@ -13,17 +18,27 @@ var WebSocket = require('ws');
 var glob = require("glob");
 
 var pathWebsockets = {}
-var CONTROLLER_ROOT_PATH = "/ws_controllers"
-var ws_controllers = glob.sync(__dirname + CONTROLLER_ROOT_PATH + "/**/*.js");
+var WS_CONTROLLER_ROOT_PATH = "/ws_controllers";
+var ws_controllers = glob.sync(__dirname + WS_CONTROLLER_ROOT_PATH + "/**/*.js");
 for(var i = 0;i < ws_controllers.length;++i){
-  var controller_path = ws_controllers[i].match(new RegExp(CONTROLLER_ROOT_PATH + ".+")).toString();
-  var action_path = controller_path.replace(new RegExp("^" + CONTROLLER_ROOT_PATH), "").toString();
+  var controller_path = ws_controllers[i].match(new RegExp(WS_CONTROLLER_ROOT_PATH + ".+")).toString();
+  var action_path = controller_path.replace(new RegExp("^" + WS_CONTROLLER_ROOT_PATH), "").toString();
   var key = action_path.replace(new RegExp(".js$"), "").toString();
   pathWebsockets[key] = require(ws_controllers[i]);
 }
 
+var pathHttps = {}
+var CONTROLLER_ROOT_PATH = "/controllers";
+var controllers = glob.sync(__dirname + CONTROLLER_ROOT_PATH + "/**/*.js");
+for(var i = 0;i < controllers.length;++i){
+  var controller_path = controllers[i].match(new RegExp(CONTROLLER_ROOT_PATH + ".+")).toString();
+  var action_path = controller_path.replace(new RegExp("^" + CONTROLLER_ROOT_PATH), "").toString();
+  var key = action_path.replace(new RegExp(".js$"), "").toString();
+  pathHttps[key] = require(controllers[i]);
+}
+
 //Enable to receive requests access to the specified port
-var server = http.createServer();
+var server = http.createServer(app);
 
 server.on('upgrade', function upgrade(request, socket, head) {
   var pathname = url.parse(request.url).pathname;
@@ -58,6 +73,16 @@ server.on('upgrade', function upgrade(request, socket, head) {
     pathWebsockets[pathname] = serverObject;
   }
 });
+
+var pathes = Object.keys(routings);
+for(var i = 0;i < pathes.length;++i){
+  var actions = Object.keys(routings[pathes[i]]);
+  var controller = pathHttps[pathes[i]];
+  var routing = routings[pathes[i]];
+  for(var j = 0;j < actions.length;++j){
+    app[actions[i]](pathes[i], controller[routing[actions[i]]]);
+  }
+}
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);

@@ -12,7 +12,6 @@
   "dependencies": {
     "ejs": "*",
     "express": "*",
-    "jquery": "*",
     "nodemon": "^1.18.3",
     "npm": "^6.4.0",
     "ws": "^6.0.0",
