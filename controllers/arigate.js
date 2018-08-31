@@ -1,5 +1,5 @@
 module.exports = {
   index: function(req, res){
-    res.render("top/index");
+    res.render("arigate/index");
   }
 }

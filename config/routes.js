@@ -1,5 +1,5 @@
 module.exports = {
-  "/top": {
+  "/arigate": {
     get: "index"
   }
 }
