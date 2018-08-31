@@ -12,10 +12,10 @@
   "dependencies": {
     "ejs": "*",
     "express": "*",
-    "nodemon": "^1.18.3",
-    "npm": "^6.4.0",
-    "ws": "^6.0.0",
-    "glob": "*"
+    "glob": "*",
+    "nodemon": "^1.18.4",
+    "npm": "^6.4.1",
+    "ws": "^6.0.0"
   },
   "repository": {
     "type": "git",
