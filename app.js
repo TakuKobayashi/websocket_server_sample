@@ -40,16 +40,20 @@ for(var i = 0;i < controllers.length;++i){
 //Enable to receive requests access to the specified port
 var server = http.createServer(app);
 
+var pathServerObjects = {}
 server.on('upgrade', function upgrade(request, socket, head) {
   var pathname = url.parse(request.url).pathname;
   if(pathname[pathname.length - 1] == "/"){
     pathname = pathname.substr(0, pathname.length - 2);
   }
+  var serverObject = pathServerObjects[pathname] || {};
   var controller = pathWebsockets[pathname];
-  if(!controller || !controller.server){
-    var websocketServer = new WebSocket.Server({noServer: true});
-    var serverObject = {server: websocketServer, connections: []};
-    websocketServer.on('connection', function connection(ws) {
+  if(!serverObject || !serverObject.server){
+    serverObject = {
+      server: new WebSocket.Server({noServer: true}),
+      connections: []
+    };
+    serverObject.server.on('connection', function connection(ws) {
       ws.on('message', function (message) {
         console.log('message:' + message);
         if(pathname.length <= 0){
@@ -57,26 +61,25 @@ server.on('upgrade', function upgrade(request, socket, head) {
             con.send(message);
           });
         }else if(controller && controller.message){
-          controller.message(websocketServer, ws, serverObject.connections, message);
+          controller.message(serverObject.server, ws, serverObject.connections, message);
         }
       });
       ws.on('close', function () {
         console.log('close');
         if(controller && controller.close){
-          controller.close(websocketServer, ws, serverObject.connections);
+          controller.close(serverObject.server, ws, serverObject.connections);
         }
         serverObject.connections = serverObject.connections.filter(function (conn, i) {
           return (conn === ws) ? false : true;
         });
       });
       serverObject.connections.push(ws);
-      console.log(serverObject.connections);
+      pathServerObjects[pathname] = serverObject;
     });
-    websocketServer.handleUpgrade(request, socket, head, function done(ws) {
-      websocketServer.emit('connection', ws, request);
-    });
-    pathWebsockets[pathname] = serverObject;
   }
+  serverObject.server.handleUpgrade(request, socket, head, function done(ws) {
+    serverObject.server.emit('connection', ws, request);
+  });
 });
 
 var pathes = Object.keys(routings);
