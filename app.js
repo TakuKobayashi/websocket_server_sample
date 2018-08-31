@@ -10,7 +10,6 @@ app.set('view engine', 'ejs');
 var routings = require(__dirname + "/config/routes.js");
 
 var port = process.env.PORT || 3000;
-//var VideoEditor = require(__dirname + '/video_editor.js');
 
 //wake up http server
 var http = require('http');

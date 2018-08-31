@@ -2,9 +2,9 @@
   "name": "websocket_server_sample",
   "version": "0.0.1",
   "description": "A simple chat client using socket.io and websocket",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "TakuKobayashi",
   "private": false,
