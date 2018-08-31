@@ -1,3 +1,5 @@
+var uuidv4 = require('uuid/v4');
+
 var roomConnectionObj = {};
 
 var filterByRoomId = function(roomId){
@@ -16,6 +18,16 @@ var filterByRoomId = function(roomId){
   return sameRoomObjs;
 }
 
+var generateRandomObj = function(){
+  var obj = {
+    x: Math.random() * 1.5,
+    y: Math.random() - 0.5,
+    z: Math.random() * 1.5,
+    id: uuidv4()
+  }
+  return obj;
+}
+
 module.exports = {
   message: function(wss, ws, connections, message){
     var messageObj = {}
@@ -32,12 +44,15 @@ module.exports = {
       }
       var sameRoomObjs = filterByRoomId(messageObj.room_id);
       if(sameRoomObjs.lendth >= messageObj.member_count){
+        var targets = [generateRandomObj()];
         for(var i = 0;i < sameRoomObjs.length;++i){
           var sendJson = {
             action: "start_count_down",
+            user_id: sameRoomObjs[i].user_id,
             point: roomConnectionObj[sameRoomObjs[i].ws].point,
             room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id,
-            user_ids: sameRoomObjs.map(obj => obj.user_id)
+            room_user_ids: sameRoomObjs.map(obj => obj.user_id),
+            targets: targets
           }
           sameRoomObjs[i].ws.send(JSON.stringify(sendJson));
         }
@@ -47,12 +62,14 @@ module.exports = {
       var myRoomObj = sameRoomObjs.find(obj => obj.user_id == messageObj.user_id);
       myRoomObj.point = myRoomObj.point + 100;
       roomConnectionObj[myRoomObj.ws].point = myRoomObj.point;
+      var targets = [generateRandomObj()];
       for(var i = 0;i < sameRoomObjs.length;++i){
         var sendJson = {
           action: "appear_object",
+          user_id: sameRoomObjs[i].user_id,
           point: roomConnectionObj[sameRoomObjs[i].ws].point,
           room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id,
-          user_ids: sameRoomObjs.map(obj => obj.user_id)
+          targets: targets
         }
         sameRoomObjs[i].ws.send(JSON.stringify(sendJson));
       }
