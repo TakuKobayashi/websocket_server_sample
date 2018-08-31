@@ -52,7 +52,11 @@ server.on('upgrade', function upgrade(request, socket, head) {
     websocketServer.on('connection', function connection(ws) {
       ws.on('message', function (message) {
         console.log('message:' + message);
-        if(controller && controller.message){
+        if(pathname.length <= 0){
+          serverObject.connections.forEach(function (con, i) {
+            con.send(message);
+          });
+        }else if(controller && controller.message){
           controller.message(websocketServer, ws, serverObject.connections, message);
         }
       });
@@ -66,6 +70,7 @@ server.on('upgrade', function upgrade(request, socket, head) {
         });
       });
       serverObject.connections.push(ws);
+      console.log(serverObject.connections);
     });
     websocketServer.handleUpgrade(request, socket, head, function done(ws) {
       websocketServer.emit('connection', ws, request);
@@ -83,6 +88,10 @@ for(var i = 0;i < pathes.length;++i){
     app[actions[i]](pathes[i], controller[routing[actions[i]]]);
   }
 }
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);

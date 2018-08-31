@@ -35,9 +35,6 @@ wss.on('connection', function (ws) {
   });
 });
 
-app.get('/jquery/jquery.js', function(req, res) {
-  res.sendFile(__dirname + '/node_modules/jquery/dist/jquery.js');
-});
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
