@@ -7,7 +7,7 @@ var filterByRoomId = function(room_id){
   var wsArray = Object.keys(roomConnectionObj);
   for(var i = 0;i < wsArray.length;++i){
     if(roomConnectionObj[wsArray[i]].room_id == room_id){
-      sameRooms.push({
+      sameRoomObjs.push({
         ws: wsArray[i],
         user_id: roomConnectionObj[wsArray[i]].user_id,
         room_id: roomConnectionObj[wsArray[i]].room_id,
