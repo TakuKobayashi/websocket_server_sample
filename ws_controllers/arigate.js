@@ -2,7 +2,7 @@ var uuidv4 = require('uuid/v4');
 
 var roomConnectionObj = {};
 
-var filterByRoomId = function(roomId){
+var filterByRoomId = function(room_id){
   var sameRoomObjs = []
   var wsArray = Object.keys(roomConnectionObj);
   for(var i = 0;i < wsArray.length;++i){
@@ -23,7 +23,8 @@ var generateRandomObj = function(){
     x: Math.random() * 1.5,
     y: Math.random() - 0.5,
     z: Math.random() * 1.5,
-    id: uuidv4()
+    id: uuidv4(),
+    asset_index: Math.floor(Math.random() * 49)
   }
   return obj;
 }
@@ -48,10 +49,18 @@ module.exports = {
         for(var i = 0;i < sameRoomObjs.length;++i){
           var sendJson = {
             action: "start_count_down",
-            user_id: sameRoomObjs[i].user_id,
-            point: roomConnectionObj[sameRoomObjs[i].ws].point,
-            room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id,
-            room_user_ids: sameRoomObjs.map(obj => obj.user_id),
+            my_user: {
+              user_id: sameRoomObjs[i].user_id,
+              point: roomConnectionObj[sameRoomObjs[i].ws].point,
+              room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id
+            },
+            room_users: sameRoomObjs.map(function(obj){
+              return {
+                user_id: obj.user_id,
+                room_id: obj.room_id,
+                point: obj.point
+              }
+            }),
             targets: targets
           }
           sameRoomObjs[i].ws.send(JSON.stringify(sendJson));
@@ -66,9 +75,18 @@ module.exports = {
       for(var i = 0;i < sameRoomObjs.length;++i){
         var sendJson = {
           action: "appear_object",
-          user_id: sameRoomObjs[i].user_id,
-          point: roomConnectionObj[sameRoomObjs[i].ws].point,
-          room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id,
+          my_user: {
+            user_id: sameRoomObjs[i].user_id,
+            point: roomConnectionObj[sameRoomObjs[i].ws].point,
+            room_id: roomConnectionObj[sameRoomObjs[i].ws].room_id
+          },
+          room_users: sameRoomObjs.map(function(obj){
+            return {
+              user_id: obj.user_id,
+              room_id: obj.room_id,
+              point: obj.point
+            }
+          }),
           targets: targets
         }
         sameRoomObjs[i].ws.send(JSON.stringify(sendJson));
