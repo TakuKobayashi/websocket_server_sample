@@ -17,7 +17,9 @@
     "npm": "^6.9.0",
     "underscore": "*",
     "uuid": "*",
-    "ws": "^6.2.0"
+    "ws": "^6.2.0",
+    "kintone-nodejs-sdk": "*",
+    "axios": "*"
   },
   "repository": {
     "type": "git",
