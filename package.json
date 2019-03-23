@@ -11,13 +11,13 @@
   "license": "MIT",
   "dependencies": {
     "ejs": "*",
-    "express": "*",
+    "express": "^4.16.4",
     "glob": "*",
+    "nodemon": "^1.18.10",
+    "npm": "^6.9.0",
     "underscore": "*",
     "uuid": "*",
-    "nodemon": "^1.18.4",
-    "npm": "^6.4.1",
-    "ws": "^6.0.0"
+    "ws": "^6.2.0"
   },
   "repository": {
     "type": "git",
