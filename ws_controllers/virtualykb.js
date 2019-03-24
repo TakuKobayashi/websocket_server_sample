@@ -13,7 +13,7 @@ module.exports = {
         value: message,
       }
     });
-    serverObject.connections.forEach(function (con, i) {
+    connections.forEach(function (con, i) {
       con.send(message);
     });
   },
