@@ -13,6 +13,7 @@ module.exports = {
         value: message,
       }
     });
+    ws.send(message);
   },
   close: function (wss, ws, connections) {}
 }
