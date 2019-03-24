@@ -13,7 +13,9 @@ module.exports = {
         value: message,
       }
     });
-    ws.send(message);
+    serverObject.connections.forEach(function (con, i) {
+      con.send(message);
+    });
   },
   close: function (wss, ws, connections) {}
 }
