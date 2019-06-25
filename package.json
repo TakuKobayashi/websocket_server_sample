@@ -2,24 +2,18 @@
   "name": "websocket_server_sample",
   "version": "0.0.1",
   "description": "A simple chat client using socket.io and websocket",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "author": "TakuKobayashi",
   "private": false,
   "license": "MIT",
   "dependencies": {
-    "ejs": "*",
-    "express": "^4.16.4",
-    "glob": "*",
-    "nodemon": "^1.18.10",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
     "npm": "^6.9.0",
-    "underscore": "*",
-    "uuid": "*",
-    "ws": "^6.2.0",
-    "kintone-nodejs-sdk": "*",
-    "axios": "*"
+    "ws": "^6.2.1"
   },
   "repository": {
     "type": "git",
