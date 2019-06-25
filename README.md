@@ -6,7 +6,7 @@ If you want to introduce two-way communication using Websocket, this project wil
 If you want to check connection and communication using Websocket, please use the following website.
 https://websocketserversample.au-syd.mybluemix.net/
 This website is a sample chat.
-So, while you open this website, you can see the message sent by others and also you can send the message to others.
+So, while you open this website, you can see the message sent by others and also you can send the message to others.
 If you want to connect using Websocket, use the following url to connect.
 wss://websocketserversample.au-syd.mybluemix.net/
 
