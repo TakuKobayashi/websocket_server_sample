@@ -46,7 +46,7 @@ public class WebsocketManager : MonoBehaviour
     {
         Debug.Log(wsUrl);
         // WebSocketのechoサーバ.
-        this.ws = new WebSocket(url);
+        this.ws = new WebSocket(wsUrl);
 
         // WebSocketをOpen.
         this.ws.OnOpen += (sender, e) => {
