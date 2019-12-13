@@ -12,7 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
-    "npm": "^6.9.0",
+    "npm": "^6.13.4",
     "ws": "^6.2.1"
   },
   "repository": {
