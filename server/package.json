@@ -4,14 +4,14 @@
   "description": "A simple chat server and client sample project",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon index.js"
+    "serve": "nodemon index.js",
+    "pm2": "pm2"
   },
   "author": "TakuKobayashi",
   "private": false,
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.1",
     "ws": "^6.2.1"
   },
   "repository": {
@@ -22,5 +22,9 @@
     "node",
     "websocket",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "pm2": "^4.4.0"
+  }
 }
