@@ -1,10 +1,10 @@
 {
   "name": "websocket_server_sample",
   "version": "0.0.1",
-  "description": "A simple chat client using socket.io and websocket",
+  "description": "A simple chat server and client sample project",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "serve": "nodemon index.js"
   },
   "author": "TakuKobayashi",
   "private": false,
@@ -12,7 +12,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
-    "npm": "^6.9.0",
     "ws": "^6.2.1"
   },
   "repository": {
