@@ -2250,9 +2250,9 @@ supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 systeminformation@^4.23.3:
-  version "4.26.4"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.26.4.tgz#ec855d64f3e28622788a96c7dcabb6b051def50a"
-  integrity sha512-4+AYe0SfjdQPHEFL0nAyFMWyBUe8c5DZdSHApeJrdAvem5yoE/eS7/dGChnKLAkr+AKAoKcnqucPv302jy2+aA==
+  version "4.30.6"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.30.6.tgz#b56074968f2ea28ac118f23221c449b0f763db22"
+  integrity sha512-NV7zo9NU7fWSuiCORZmMLe90cFrrTS6jfalrQ0/5B7JGQ2ei15c2gmfICBwWdmviyv/FXAFVReySxOtDDkppqw==
 
 term-size@^2.1.0:
   version "2.2.0"
