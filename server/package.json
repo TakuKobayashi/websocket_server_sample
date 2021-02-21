@@ -4,6 +4,7 @@
   "description": "A simple chat server and client sample project",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "serve": "nodemon index.js",
     "pm2": "pm2"
   },
