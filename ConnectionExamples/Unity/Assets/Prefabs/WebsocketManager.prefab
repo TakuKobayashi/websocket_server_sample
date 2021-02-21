@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e7464abb65b4c859768ec5371d101a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: wss://websocketserversample.au-syd.mybluemix.net/
+  url: wss://websocketsample-278018.dt.r.appspot.com/

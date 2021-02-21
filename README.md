@@ -14,7 +14,7 @@ So, while you open this website, you can see the message sent by others and also
 If you want to connect using Websocket, use the following url to connect.
 
 ```
-wss://websocketserversample.au-syd.mybluemix.net/
+wss://websocketsample-278018.dt.r.appspot.com/
 ```
 
 # Wakeup Local Server
