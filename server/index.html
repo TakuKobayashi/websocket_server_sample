@@ -41,7 +41,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
       var url = window.location.href
-      var host = "websocketsample-278018.dt.r.appspot.com/";
+      var host = window.document.location.host;
       var ws;
       if(url.startsWith("https://")){
         ws = new WebSocket('wss://' + host);
