@@ -14,7 +14,7 @@ So, while you open this website, you can see the message sent by others and also
 If you want to connect using Websocket, use the following url to connect.
 
 ```
-wss://websocketsample-278018.dt.r.appspot.com/
+wss://websocket-sample.glitch.me/
 ```
 
 # Wakeup Local Server
